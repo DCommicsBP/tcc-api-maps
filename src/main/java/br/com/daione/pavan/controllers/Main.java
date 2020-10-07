@@ -3,6 +3,7 @@ package br.com.daione.pavan.controllers;
 import br.com.daione.pavan.entities.TypeEntity;
 import br.com.daione.pavan.services.TypeService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
@@ -19,6 +20,11 @@ public class Main {
     @PostMapping("/insert-all")
     public Stream<TypeEntity> saveAll (@RequestBody List<TypeEntity> typeEntities){
         return typeEntities.stream().map(typeEntity -> this.service.save(typeEntity));
+    }
+
+    @GetMapping("/list-all")
+    public List<TypeEntity> listAll(){
+        return  this.service.listAll();
     }
 
 
